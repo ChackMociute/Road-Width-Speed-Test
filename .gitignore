@@ -1,0 +1,4 @@
+.ipynb_checkpoints 
+
+# Temporarily ignore full dataset
+dataset/*.png
