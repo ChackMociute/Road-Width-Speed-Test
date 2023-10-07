@@ -2,22 +2,26 @@
 
 {% block content %}
 <div class="container-fluid">
-  <div class="row">
+  <div class="row py-3">
     <div class="col-10 offset-1">
-      <h3><center><b>Testing the driving velocity of different roads</b></center></h3>
+      <h3><center><b>Testing the preferred driving velocity of different roads</b></center></h3>
     </div>
   </div>
   <div class="row">
     <div class="col-6 offset-3">
-      <p>Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions </p>
+      <p align="justify">Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions </p>
     </div>
   </div>
+    <form class="col-12" action="" method="post" name="name">
   <div class="row">
-    <div class="col-4 offset-4">
-      <form action="", method="post">
+      {{ form.hidden_tag() }}
+      <div class="col-4 offset-3 py-2">
+        {{ form.name(class_='form-control') }}
+      </div>
+      <div class="col-2">
         <button class="btn btn-outline-info col-12" type="submit" name="begin"><h4>Begin</h4></button>
-      </form>
-    </div>
+      </div>
   </div>
+    </form>
 </div>
 {% endblock %}

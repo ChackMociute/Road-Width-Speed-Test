@@ -4,12 +4,12 @@
 <div class="container-fluid">
     <div class="row py-3">
       <div class="col-10 offset-2">
-        <img class="col-10" src="{{url_for('static', filename='1.png')}}"" align="middle"/>
+        <img class="col-10" src="{{url_for('static', filename=img)}}"" align="middle"/>
       </div>
     </div>
     <div class="row">
       <div class="col-2 offset-2">
-        <form action="" method="post" name="New assessment">
+        <form action="" method="post" name="response">
           {{ form.hidden_tag() }}
           {{ form.speed(class_='form-control') }}
           <!-- <button class="btn btn-outline-info col-12" type="submit" name="begin"><h4>Begin</h4></button> -->
