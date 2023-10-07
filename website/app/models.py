@@ -1,7 +1,5 @@
-from app import db
+from app import db, IMAGES_PER_PARTICIPANT
 import pandas as pd
-
-IMAGES_PER_PARTICIPANT = 100
 
 
 class Participant(db.Model):

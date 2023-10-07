@@ -4,6 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_admin import Admin
 
+IMAGES_PER_PARTICIPANT = 100
+
 app = Flask(__name__)
 app.config.from_mapping(
     SECRET_KEY='dev',

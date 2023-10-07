@@ -1,5 +1,5 @@
 from timeit import default_timer
-from app import app, db, admin
+from app import app, db, admin, IMAGES_PER_PARTICIPANT
 from flask import render_template, redirect, url_for
 from flask_admin.contrib.sqla import ModelView
 from .forms import ParticipantForm, ResponseForm
@@ -24,7 +24,7 @@ def trial(name, trial, start):
     if form.validate_on_submit():
         add_response(img, form.speed.data, (default_timer() - float(start)) * 1000)
         return redirect(url_for('trial', name=name, trial=int(trial) + 1, start=default_timer()))
-    return render_template("trial.html", form=form, trial=trial, img=img.filename)
+    return render_template("trial.html", form=form, trial=trial, img=img.filename, i=trial, N=IMAGES_PER_PARTICIPANT)
 
 def check_participant(name):
     # If participant is new, create particpiant

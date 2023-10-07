@@ -9,11 +9,21 @@
   </div>
   <div class="row">
     <div class="col-6 offset-3">
-      <p align="justify">Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions </p>
+      <p align="justify">
+        You will be presented with a number of images of different roads and must estimate at what speed you would be willing to drive on such a road. Your answer should be based 
+        entirely on the speed you feel comfortable with and not on the speed limits you may be used to. Thus you should ignore traffic signs and different speed zone regulations.
+        Some roads are right- and some are left-hand traffic but you are requested to answer as if all roads were the handedness that you are familiar and comfortable with, 
+        i.e., to ignore which side of the road is shown.
+      </p>
+      <p align="justify">
+        To begin the experiment just enter your name or any identifier you like and press the "Begin" button or the enter key. You may take a break any time you like by clicking 
+        the button at the top left. To then continue the trials, simply enter the same identifier and press "Begin" again. Your response times are measured so if you do take a break, 
+        make sure to pause properly by returning to this screen.
+      </p>
     </div>
   </div>
-    <form class="col-12" action="" method="post" name="name">
-  <div class="row">
+  <form class="col-12" action="" method="post" name="name">
+  <div class="row py-5">
       {{ form.hidden_tag() }}
       <div class="col-4 offset-3 py-2">
         {{ form.name(class_='form-control') }}
@@ -22,6 +32,6 @@
         <button class="btn btn-outline-info col-12" type="submit" name="begin"><h4>Begin</h4></button>
       </div>
   </div>
-    </form>
+  </form>
 </div>
 {% endblock %}
