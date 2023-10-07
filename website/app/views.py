@@ -1,4 +1,4 @@
-import pandas as pd
+from timeit import default_timer
 from app import app, db, admin
 from flask import render_template, redirect, url_for
 from flask_admin.contrib.sqla import ModelView
@@ -14,16 +14,17 @@ def home():
     form = ParticipantForm()
     if form.validate_on_submit():
         trial = check_participant(form.name.data)
-        return redirect(url_for('trial', name=form.name.data, trial=trial))
+        return redirect(url_for('trial', name=form.name.data, trial=trial, start=default_timer()))
     return render_template("home.html", form=form)
 
-@app.route('/trial/<name>/<trial>', methods=['GET', 'POST'])
-def trial(name, trial):
+@app.route('/trial/<name>/<trial>/<start>', methods=['GET', 'POST'])
+def trial(name, trial, start):
     form = ResponseForm()
     img = get_image(name, int(trial))
     if form.validate_on_submit():
-        return redirect(url_for('trial', name=name, trial=int(trial) + 1))
-    return render_template("trial.html", form=form, trial=trial, img=img)
+        add_response(img, form.speed.data, (default_timer() - float(start)) * 1000)
+        return redirect(url_for('trial', name=name, trial=int(trial) + 1, start=default_timer()))
+    return render_template("trial.html", form=form, trial=trial, img=img.filename)
 
 def check_participant(name):
     # If participant is new, create particpiant
@@ -38,4 +39,9 @@ def check_participant(name):
 
 def get_image(name, trial):
     for i, r in enumerate(Participant.query.filter_by(name=name).first().images):
-        if i == trial: return r.filename
+        if i == trial: return r
+
+def add_response(response, speed, RT):
+    response.response = speed
+    response.response_time = RT
+    db.session.commit()
