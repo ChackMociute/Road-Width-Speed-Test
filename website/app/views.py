@@ -14,6 +14,7 @@ def home():
     form = ParticipantForm()
     if form.validate_on_submit():
         trial = check_participant(form.name.data)
+        if trial is None: return redirect(url_for("complete"))
         return redirect(url_for('trial', name=form.name.data, trial=trial, start=default_timer()))
     return render_template("home.html", form=form)
 
@@ -21,10 +22,15 @@ def home():
 def trial(name, trial, start):
     form = ResponseForm()
     img = get_image(name, int(trial))
+    if img is None: return redirect(url_for("complete"))
     if form.validate_on_submit():
         add_response(img, form.speed.data, (default_timer() - float(start)) * 1000)
         return redirect(url_for('trial', name=name, trial=int(trial) + 1, start=default_timer()))
-    return render_template("trial.html", form=form, trial=trial, img=img.filename, i=trial, N=IMAGES_PER_PARTICIPANT)
+    return render_template("trial.html", form=form, trial=trial, img=img.filename, i=int(trial) + 1, N=IMAGES_PER_PARTICIPANT)
+
+@app.route('/complete', methods=['GET', 'POST'])
+def complete():
+    return render_template("complete.html")
 
 def check_participant(name):
     # If participant is new, create particpiant
