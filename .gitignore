@@ -4,3 +4,4 @@ migrations
 
 # Temporarily ignore full dataset
 dataset/*.png
+static
