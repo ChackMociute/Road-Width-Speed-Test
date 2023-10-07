@@ -10,13 +10,13 @@
   <form action="" method="post" name="response">
     {{ form.hidden_tag() }}
     <div class="row">
-      <div class="col-1 offset-2 py-3">
+      <div class="col-lg-1 col-md-1 col-sm-2 col-1 offset-lg-2 offset-md-2 offset-sm-1 offset-0 py-3">
           <p align="right">{{i}}/{{N}}</p>
       </div>
-      <div class="col-2 py-2">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-10 offset-0 py-2">
           {{ form.speed(class_='form-control') }}
       </div>
-      <div class="col-1">
+      <div class="col-lg-2 col-md-2 col-sm-6 col-10 offset-lg-0 offset-md-0 offset-sm-3 offset-1">
           <button class="btn btn-outline-info col-12" type="submit" name="answer"><h4>Submit</h4></button>
       </div>
     </div>
