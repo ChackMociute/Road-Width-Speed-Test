@@ -5,7 +5,7 @@ import pandas as pd
 class Participant(db.Model):
     def __init__(self, **kwargs):
         kwargs['images'] = [Response(filename=f)
-                            for f in pd.read_csv("../dataset/data.csv", index_col=0).
+                            for f in pd.read_csv("app/static/data.csv", index_col=0).
                             sample(IMAGES_PER_PARTICIPANT).filename.values]
         super().__init__(**kwargs)
     
